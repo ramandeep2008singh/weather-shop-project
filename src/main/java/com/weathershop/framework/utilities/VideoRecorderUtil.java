@@ -9,12 +9,16 @@ import org.monte.screenrecorder.ScreenRecorder;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.monte.media.FormatKeys.*;
 import static org.monte.media.VideoFormatKeys.*;
 
+/**
+ * This video recorder util is to record the videos on all the executions
+ */
 public class VideoRecorderUtil extends ScreenRecorder {
 
     public static ScreenRecorder screenRecorder;
@@ -42,7 +46,7 @@ public class VideoRecorderUtil extends ScreenRecorder {
 
     }
 
-    public static void startRecording(String methodName) throws Exception {
+    public static void startRecording(Method methodName) throws Exception {
         var file = new File(Settings.videoPath);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -63,7 +67,7 @@ public class VideoRecorderUtil extends ScreenRecorder {
                         Rational.valueOf(15), QualityKey, 1.0f, KeyFrameIntervalKey, 15 * 60),
                 new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey,
                         "black", FrameRateKey, Rational.valueOf(30)),
-                null, file, methodName);
+                null, file, methodName.getName());
 
         screenRecorder.start();
 

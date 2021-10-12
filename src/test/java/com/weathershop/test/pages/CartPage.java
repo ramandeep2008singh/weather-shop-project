@@ -1,6 +1,9 @@
 package com.weathershop.test.pages;
 
 import com.weathershop.framework.base.BasePage;
+import com.weathershop.framework.base.DriverContext;
+import com.weathershop.framework.utilities.CommonTestUtil;
+import com.weathershop.framework.utilities.ExcelUtil;
 import com.weathershop.framework.utilities.WaitUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -51,7 +54,46 @@ public class CartPage extends BasePage {
     @FindBy(how = How.ID, using = "submitButton")
     private WebElement btnSubmit;
 
+    @FindBy(how = How.CSS, using = ".table.table-striped>tbody>tr:first-child>td:first-child")
+    private WebElement lblFirstProductName;
+
+    @FindBy(how = How.CSS, using = ".table.table-striped>tbody>tr:first-child>td:last-child")
+    private WebElement lblFirstProductPrice;
+
+    @FindBy(how = How.CSS, using = ".table.table-striped>tbody>tr:last-child>td:first-child")
+    private WebElement lblSecondProductName;
+
+    @FindBy(how = How.CSS, using = ".table.table-striped>tbody>tr:last-child>td:last-child")
+    private WebElement lblSecondProductPrice;
+
+    @FindBy(how = How.NAME, using = "stripe_checkout_app")
+    private WebElement iFrame;
+
     // ---- Getters ----
+
+    public WebElement getLblFirstProductName() {
+        WaitUtil.waitForPageToLoad();
+        WaitUtil.waitForElementVisible(lblFirstProductName);
+        return lblFirstProductName;
+    }
+
+    public WebElement getLblFirstProductPrice() {
+        WaitUtil.waitForPageToLoad();
+        WaitUtil.waitForElementVisible(lblFirstProductPrice);
+        return lblFirstProductPrice;
+    }
+
+    public WebElement getLblSecondProductName() {
+        WaitUtil.waitForPageToLoad();
+        WaitUtil.waitForElementVisible(lblSecondProductName);
+        return lblSecondProductName;
+    }
+
+    public WebElement getLblSecondProductPrice() {
+        WaitUtil.waitForPageToLoad();
+        WaitUtil.waitForElementVisible(lblSecondProductPrice);
+        return lblSecondProductPrice;
+    }
 
     public WebElement getLblCartHeader() {
         WaitUtil.waitForPageToLoad();
@@ -67,13 +109,11 @@ public class CartPage extends BasePage {
 
     public List<WebElement> getLblCartItemName() {
         WaitUtil.waitForPageToLoad();
-        // WaitUtil.waitForElementVisible(lblCartItemName);
         return lblCartItemName;
     }
 
     public List<WebElement> getLblCartItemPrice() {
         WaitUtil.waitForPageToLoad();
-        // WaitUtil.waitForElementVisible(lblCartItemPrice);
         return lblCartItemPrice;
     }
 
@@ -131,6 +171,31 @@ public class CartPage extends BasePage {
         return btnSubmit;
     }
 
+    public WebElement getiFrame() {
+        WaitUtil.waitForPageToLoad();
+        WaitUtil.waitForElementVisible(iFrame);
+        return iFrame;
+    }
+
     // ---- CartPage specific methods ----
 
+    public void navigateToCartPage() {
+        DriverContext.getDriver().get(ExcelUtil.readCell("Urls", 8));
+        WaitUtil.waitForElementVisible(getPage(CartPage.class).getBtnPayWithCard());
+    }
+
+    public void fillPaymentDetails(String email, String cardNr, String expiry, String cvv, String zipCode) {
+        getBtnPayWithCard().click();
+        DriverContext.getDriver().switchTo().frame(getiFrame());
+        WaitUtil.waitForElementVisible(getTextBoxEmail());
+        getTextBoxEmail().sendKeys(email);
+        CommonTestUtil.sendKeysWithJavaScript(cardNr, getTextBoxCardNumber());
+        CommonTestUtil.sendKeysWithJavaScript(expiry, getTextBoxExpiryDate());
+        getTextBoxCVVNumber().sendKeys(cvv);
+        getTextBoxZIPCode().sendKeys(zipCode);
+        getBtnSubmit().click();
+        DriverContext.getDriver().switchTo().parentFrame();
+        WaitUtil.waitForPageToLoad();
+        WaitUtil.waitForElementVisible(getPage(ConfirmationPage.class).getLblSuccessMessage());
+    }
 }

@@ -21,14 +21,29 @@ public class SunscreensPage extends BasePage {
     @FindBy(how = How.CSS, using = ".octicon.octicon-info")
     private WebElement toolTipSunscreenInfoIcon;
 
-    @FindBy(how = How.CLASS_NAME, using = "btn btn-primary")
+    @FindBy(how = How.XPATH, using = "//div[@class='text-center col-4']/p[contains(text(),'SPF-50')]/following-sibling::button")
     private List<WebElement> btnAddSunscreens;
+
+    @FindBy(how = How.XPATH, using = "//div[@class='text-center col-4']/p[contains(text(),'SPF-30')]/following-sibling::button")
+    private List<WebElement> btnAddSunscreensSpf30;
+
+    @FindBy(how = How.XPATH, using = "//div[@class='text-center col-4']/p/following-sibling::button")
+    private List<WebElement> btnAdd;
+
+    @FindBy(how = How.CSS, using = ".text-center.col-4>p:nth-child(2)")
+    private List<WebElement> lblSunscreensNames;
 
     @FindBy(how = How.CSS, using = ".text-center.col-4>p:nth-child(3)")
     private List<WebElement> lblSunscreensPrices;
 
-    @FindBy(how = How.CSS, using = ".text-center.col-4>p:nth-child(2)")
-    private List<WebElement> lblSunscreensNames;
+    @FindBy(how = How.XPATH, using = "//div[@class='text-center col-4']/p[contains(text(),'SPF-50')]/following-sibling::p")
+    private List<WebElement> lblSunscreensSPF50Prices;
+
+    @FindBy(how = How.XPATH, using = "//div[@class='text-center col-4']/p[contains(text(),'SPF-30')]/following-sibling::p")
+    private List<WebElement> lblSunscreensSPF30Prices;
+
+    @FindBy(how = How.XPATH, using = "//*[text()='2 item(s)']")
+    private WebElement btnWithText;
 
     // ---- Getters ----
 
@@ -54,25 +69,34 @@ public class SunscreensPage extends BasePage {
         return btnAddSunscreens;
     }
 
-    public List<WebElement> getLblSunscreensPrices() {
-        return lblSunscreensPrices;
+    public List<WebElement> getBtnAddSunscreensSpf30() {
+        return btnAddSunscreensSpf30;
+    }
+
+    public List<WebElement> getLblSunscreensSPF50Prices() {
+        return lblSunscreensSPF50Prices;
+    }
+
+    public List<WebElement> getLblSunscreensSPF30Prices() {
+        return lblSunscreensSPF30Prices;
     }
 
     public List<WebElement> getLblSunscreensNames() {
         return lblSunscreensNames;
     }
 
-    // ---- SunscreensPage Specific Methods ----
+    public List<WebElement> getLblSunscreensPrices() {
+        return lblSunscreensPrices;
+    }
 
-    public void getLeastExpensiveSPF_50Sunscreen() {
-        List<WebElement> spf50List = getPage(SunscreensPage.class).getLblSunscreensNames();
+    public List<WebElement> getBtnAdd() {
+        return btnAdd;
+    }
+
+    public WebElement getBtnWithText() {
         WaitUtil.waitForPageToLoad();
-        for (int i = 0; i < spf50List.size(); i++) {
-            if (spf50List.get(i).getText().contains("SPF-50")) {
-                System.out.println(spf50List.get(i).getText());
-            }
-        }
-
+        WaitUtil.waitForElementVisible(btnWithText);
+        return btnWithText;
     }
 
 }

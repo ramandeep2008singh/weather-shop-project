@@ -39,6 +39,4 @@ public class ConfirmationPage extends BasePage {
         return lblSuccessMessage;
     }
 
-    // ---- ConfirmationPage Specific Methods -----
-
 }

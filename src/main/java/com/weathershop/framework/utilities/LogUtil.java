@@ -8,6 +8,9 @@ import java.io.FileWriter;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * This log util file is implementing the logic to write the logs to files
+ */
 public class LogUtil {
 
     // logging name

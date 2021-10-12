@@ -11,6 +11,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * This util holds all the common wait methods
+ */
 public class WaitUtil {
 
     static WebDriverWait wait = new WebDriverWait(DriverContext.getDriver(), 30);

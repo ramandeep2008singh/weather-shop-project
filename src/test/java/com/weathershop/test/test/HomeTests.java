@@ -1,7 +1,7 @@
 package com.weathershop.test.test;
 
 import com.weathershop.framework.utilities.ExcelUtil;
-import com.weathershop.framework.utilities.TestCommonUtil;
+import com.weathershop.framework.utilities.CommonTestUtil;
 import com.weathershop.test.pages.HomePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -16,7 +16,7 @@ public class HomeTests extends TestInitializer {
 
     @Test
     public void testURLIsCorrect() {
-        Assert.assertEquals(TestCommonUtil.getUrl(),
+        Assert.assertEquals(CommonTestUtil.getUrl(),
                 ExcelUtil.readCell("Urls", 1), "URL is not correct");
     }
 

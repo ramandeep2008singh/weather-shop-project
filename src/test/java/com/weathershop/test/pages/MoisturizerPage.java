@@ -30,6 +30,24 @@ public class MoisturizerPage extends BasePage {
     @FindBy(how = How.CSS, using = ".text-center.col-4>p:nth-child(2)")
     private List<WebElement> lblMoisturizerNames;
 
+    @FindBy(how = How.XPATH, using = "//div[@class='text-center col-4']/p/following-sibling::button")
+    private List<WebElement> btnAdd;
+
+    @FindBy(how = How.XPATH, using = "//div[@class='text-center col-4']/p[contains(text(),'Aloe')]/following-sibling::p")
+    private List<WebElement> lblMoisturizerAloePrices;
+
+    @FindBy(how = How.XPATH, using = "//div[@class='text-center col-4']/p[contains(text(),'Almond')]/following-sibling::p")
+    private List<WebElement> lblMoisturizerAlmondPrices;
+
+    @FindBy(how = How.XPATH, using = "//div[@class='text-center col-4']/p[contains(text(),'Aloe')]/following-sibling::button")
+    private List<WebElement> btnAddMoisturizer;
+
+    @FindBy(how = How.XPATH, using = "//div[@class='text-center col-4']/p[contains(text(),'Almond')]/following-sibling::button")
+    private List<WebElement> btnAddMoisturizerAlmond;
+
+    @FindBy(how = How.XPATH, using = "//*[text()='2 item(s)']")
+    private WebElement btnWithText;
+
     // ---- Getters ----
 
     public WebElement getBtnCart() {
@@ -62,7 +80,30 @@ public class MoisturizerPage extends BasePage {
         return lblMoisturizerNames;
     }
 
-    // ---- MoisturizerPage specific methods ----
+    public List<WebElement> getBtnAdd() {
+        return btnAdd;
+    }
 
+    public List<WebElement> getLblMoisturizerAloePrices() {
+        return lblMoisturizerAloePrices;
+    }
+
+    public List<WebElement> getLblMoisturizerAlmondPrices() {
+        return lblMoisturizerAlmondPrices;
+    }
+
+    public List<WebElement> getBtnAddMoisturizer() {
+        return btnAddMoisturizer;
+    }
+
+    public List<WebElement> getBtnAddMoisturizerAlmond() {
+        return btnAddMoisturizerAlmond;
+    }
+
+    public WebElement getBtnWithText() {
+        WaitUtil.waitForPageToLoad();
+        WaitUtil.waitForElementVisible(btnWithText);
+        return btnWithText;
+    }
 
 }

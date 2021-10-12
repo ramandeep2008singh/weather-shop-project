@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="tests">
-    <listeners>
-        <listener class-name="com.weathershop.test.listeners.AllureListener"/>
-    </listeners>
-    <test name="CatalogTests" parallel="tests">
+<suite name="WeatherShopRegressionSuite" parallel="tests" thread-count="10">
+    <test name="HomeTests" parallel="tests">
         <classes>
-            <class name="com.weathershop.test.test.HomeTests">
-                <!--<methods>
-                    <include name="testCatalogPageIsOpen" />
-                </methods>-->
-            </class>
+            <class name="com.weathershop.test.test.HomeTests"/>
+        </classes>
+    </test>
+    <test name="MoisturizerTests">
+        <classes>
+            <class name="com.weathershop.test.test.MoisturizerTests"/>
+        </classes>
+    </test>
+    <test name="SunscreensTests">
+        <classes>
+            <class name="com.weathershop.test.test.SunscreensTests"/>
+        </classes>
+    </test>
+    <test name="CheckoutTests">
+        <classes>
+            <class name="com.weathershop.test.test.CheckoutTests"/>
+        </classes>
+    </test>
+    <test name="CartTests" >
+        <classes>
+            <class name="com.weathershop.test.test.CartTests"/>
         </classes>
     </test>
 </suite>

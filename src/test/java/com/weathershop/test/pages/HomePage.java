@@ -86,14 +86,12 @@ public class HomePage extends BasePage {
 
     // ----- HomePage Specific Methods ------
 
-    /*public MoisturizerPage clickOnBuyMoisturizer() {
+    public void clickOnBuyMoisturizer() {
         getBtnBuyMoisturizers().click();
-        return getInstance(MoisturizerPage.class);
     }
 
-    public SunscreensPage clickOnBuySunscreens() {
+    public void clickOnBuySunscreens() {
         getBtnBuySunscreens().click();
-        return getInstance(SunscreensPage.class);
-    }*/
+    }
 
 }

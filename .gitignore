@@ -6,9 +6,7 @@
 /.buildpath
 /.gitflow
 *.class
-.pmd
 .checkstyle
-.externalToolBuilders
 .idea/
 .DS_Store
 *.iml

@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Hashtable;
 
+/**
+ * This Excel util class is to implement the logic to read data from the Excel sheet
+ */
 public class ExcelUtil {
 
     static Sheet wrksheet;
